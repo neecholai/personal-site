@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typed from 'typed.js';
 
 const useRerender = () => {
@@ -9,7 +9,8 @@ const useRerender = () => {
 const useTyped = (ref, options) => {
   const instance = React.useRef(null);
   const rerender = useRerender();
-  React.useEffect(() => {
+  
+  useEffect(() => {
     if (ref.current === null) return;
     instance.current = new Typed(ref.current, options);
     rerender();
@@ -17,4 +18,5 @@ const useTyped = (ref, options) => {
   }, [ref]);
   return instance.current;
 };
+
 export default useTyped;

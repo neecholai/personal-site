@@ -6,8 +6,7 @@ import useTyped from '../../hooks/useTyped';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-    background: `url(${backgroundPhoto}), linear-gradient(to bottom, #3B5B72 80%, #E4E2E5)`,
-    backgroundPosition: "center center, 20% 80%",
+    background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(45, 87, 109, 0.2) 80%, rgba(233, 231, 234, 1)), url(${backgroundPhoto})`,
     backgroundClip: 'initial',
     backgroundSize: 'cover',
     // background: "linear-gradient(to bottom, #3B5B72 80%, #E4E2E5)",
@@ -30,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
 	title: {
-		color: 'white',
+		color: theme.palette.secondary.contrastText,
 		padding: 'auto',
 	},
 	typed: {
 		fontSize: '200%',
-    color: 'white',
+    color: theme.palette.secondary.contrastText,
     height: "32px",
 	},
 }));
@@ -56,7 +55,7 @@ const Head = () => {
 	useTyped(typeRef, options);
 
 	return (
-		<div className={classes.root}>
+		<div id="head" className={classes.root}>
 			<Typography variant="h1" className={classes.title}>
 				Nicholai Hansen
 			</Typography>

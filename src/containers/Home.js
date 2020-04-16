@@ -1,6 +1,7 @@
 import React from 'react';
-import About from '../components/About';
+import Nav from '../components/Nav';
 import Head from '../components/Head';
+import About from '../components/About';
 import Projects from '../components/Projects';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,6 +16,7 @@ const Home = () => {
 
 	return (
 		<div className={classes.home}>
+			<Nav />
 			<Head />
 			<About />
 			<Projects />
