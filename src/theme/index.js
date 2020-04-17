@@ -9,6 +9,9 @@ const theme = responsiveFontSizes(
       secondary: {
         main: '#2D576D',
       },
+      text: {
+        primary: "#FFFFFF",
+      }
     },
     typography: {
       fontFamily: 'Nunito',
