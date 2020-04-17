@@ -20,19 +20,30 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.contrastText,
     boxShadow: 'none',
     padding: theme.spacing(1),
+    width: '100vw',
   }),
   hide: {
     display: 'none',
   },
-  title: {
+  navLeft: {
+    width: '100%',
     textAlign: 'left',
-    marginLeft: theme.spacing(3),
-    flexGrow: 1,
+  },
+  navRight: {
+    textAlign: 'right',
+  },
+  title: {
+    marginLeft: theme.spacing(1),
     fontSize: '32px',
   },
   navButton: {
-    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(3),
     fontSize: '24px',
+  },
+  hover: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   drawer: {
     width: '250',
@@ -43,9 +54,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Nav = ({transparent}) => {
+const Nav = ({ transparent }) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('xs'));
-  const classes = useStyles({transparent});
+  const classes = useStyles({ transparent });
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -85,30 +96,35 @@ const Nav = ({transparent}) => {
             <MenuIcon className={classes.menuIcon} />
           </IconButton>
 
-          <Typography
-            component={Link}
-            to="head"
-            smooth
-            className={clsx(classes.title, isMobile && classes.hide)}
-          >
-            Nicholai Hansen
-          </Typography>
-          <Typography
-            component={Link}
-            to="about"
-            smooth
-            className={clsx(classes.navButton, isMobile && classes.hide)}
-          >
-            About
-          </Typography>
-          <Typography
-            component={Link}
-            to="projects"
-            smooth
-            className={clsx(classes.navButton, isMobile && classes.hide)}
-          >
-            Projects
-          </Typography>
+          <div className={classes.navLeft}>
+            <Typography
+              component={Link}
+              to="head"
+              smooth
+              className={clsx(classes.title, classes.hover, isMobile && classes.hide)}
+            >
+              Nicholai Hansen
+            </Typography>
+          </div>
+
+          <div className={classes.navRight}>
+            <Typography
+              component={Link}
+              to="about"
+              smooth
+              className={clsx(classes.navButton, classes.hover, isMobile && classes.hide)}
+            >
+              About
+            </Typography>
+            <Typography
+              component={Link}
+              to="projects"
+              smooth
+              className={clsx(classes.navButton, classes.hover, isMobile && classes.hide)}
+            >
+              Projects
+            </Typography>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer

@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: 'inherit',
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.secondary.main,
+    padding: theme.spacing(0, 0, 4, 0),
   },
   title: {
     padding: theme.spacing(2, 0),
