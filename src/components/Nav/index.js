@@ -48,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: '250',
   },
+  drawerPaper: {
+    backgroundColor: theme.palette.primary.light
+  },
+  drawerText: {
+    color: theme.palette.secondary.main,
+  },
   menuIcon: {
     height: '40px',
     width: '40px',
@@ -75,7 +81,7 @@ const Nav = ({ transparent }) => {
       ].map((item) => (
         <ListItem button key={item.text}>
           <Link to={item.scroll} smooth onClick={toggleDrawer(false)}>
-            <ListItemText primary={item.text} />
+            <ListItemText className={classes.drawerText} primary={item.text} />
           </Link>
         </ListItem>
       ))}
@@ -132,6 +138,9 @@ const Nav = ({ transparent }) => {
         open={open}
         onClose={toggleDrawer(false)}
         className={clsx(classes.drawer)}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
       >
         {drawerList}
       </Drawer>
