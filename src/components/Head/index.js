@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 const Head = ({ headRef }) => {
   const classes = useStyles();
   const typeRef = useRef();
-
+  
   const options = {
     strings: [
       'Software Engineer',
@@ -101,8 +101,8 @@ const Head = ({ headRef }) => {
     cursorChar: '',
     loop: true,
   };
-
   useTyped(typeRef, options);
+  
 
   return (
     <div id="head" ref={headRef} className={classes.root}>
@@ -113,56 +113,40 @@ const Head = ({ headRef }) => {
         <Typography variant="h5" ref={typeRef} className={classes.typed}></Typography>
       </div>
       <div className={classes.socials}>
-        <Avatar className={clsx(classes.avatar, classes.faGithub)}>
-          <a
-            href="https://github.com/neecholai"
-            rel="noopener noreferrer"
-            target="_blank"
-            className={classes.icon}
-          >
-            <FontAwesomeIcon className={classes.fa} icon={faGithub} />
-          </a>
-        </Avatar>
-        <Avatar className={clsx(classes.avatar, classes.faLinkedin)}>
-          <a
-            href="https://www.linkedin.com/in/nicholai-hansen-92405a96/"
-            rel="noopener noreferrer"
-            target="_blank"
-            className={classes.icon}
-          >
-            <FontAwesomeIcon className={classes.fa} icon={faLinkedin} />
-          </a>
-        </Avatar>
-        <Avatar className={clsx(classes.avatar, classes.faEnvelope)}>
-          <a
-            href="mailto:nicholaihansen1993@gmail.com"
-            rel="noopener noreferrer"
-            target="_blank"
-            className={classes.icon}
-          >
-            <FontAwesomeIcon className={classes.fa} icon={faEnvelope} />
-          </a>
-        </Avatar>
-        <Avatar className={clsx(classes.avatar, classes.faFacebook)}>
-          <a
-            href="https://www.facebook.com/nicholai.h"
-            rel="noopener noreferrer"
-            target="_blank"
-            className={classes.icon}
-          >
-            <FontAwesomeIcon className={classes.fa} icon={faFacebook} />
-          </a>
-        </Avatar>
-        <Avatar className={clsx(classes.avatar, classes.faInstagram)}>
-          <a
-            href="https://www.instagram.com/neecholai/?hl=en"
-            rel="noopener noreferrer"
-            target="_blank"
-            className={classes.icon}
-          >
-            <FontAwesomeIcon className={classes.fa} icon={faInstagram} />
-          </a>
-        </Avatar>
+        {[
+          { link: 'https://github.com/neecholai', class: classes.faGithub, icon: faGithub },
+          {
+            link: 'https://www.linkedin.com/in/nicholai-hansen-92405a96/',
+            class: classes.faLinkedin,
+            icon: faLinkedin,
+          },
+          {
+            link: 'mailto:nicholaihansen1993@gmail.com',
+            class: classes.faEnvelope,
+            icon: faEnvelope,
+          },
+          {
+            link: 'https://www.facebook.com/nicholai.h',
+            class: classes.faFacebook,
+            icon: faFacebook,
+          },
+          {
+            link: 'https://www.instagram.com/neecholai/?hl=en',
+            class: classes.faInstagram,
+            icon: faInstagram,
+          },
+        ].map((social) => (
+          <Avatar className={clsx(classes.avatar, [social.class])}>
+            <a
+              href={`${social.link}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              className={classes.icon}
+            >
+              <FontAwesomeIcon className={classes.fa} icon={social.icon} />
+            </a>
+          </Avatar>
+        ))}
       </div>
     </div>
   );
