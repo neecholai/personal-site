@@ -10,95 +10,116 @@ import MenuIcon from '@material-ui/icons/Menu';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    background: 'transparent',
-    // backgroundColor: theme.palette.secondary.main,
+  root: ({ transparent }) => ({
+    transition: 'background 0.7s ease',
+    background: transparent ? 'transparent' : theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
     boxShadow: 'none',
-    // '% .navbar-shrink': {
-    //   opacity: 0.7,
-    // },
+    padding: theme.spacing(1),
+  }),
+  hide: {
+    display: 'none',
   },
   title: {
     textAlign: 'left',
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(3),
     flexGrow: 1,
-    padding: theme.spacing(2),
     fontSize: '32px',
   },
   navButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(3),
     fontSize: '24px',
   },
-  drawerList: {
-    width: 'auto',
+  drawer: {
+    width: '250',
+  },
+  menuIcon: {
+    height: '40px',
+    width: '40px',
   },
 }));
 
-const Nav = () => {
-  const classes = useStyles();
-  const [drawer, setDrawer] = useState({ top: false });
-  console.log({drawer});
+const Nav = ({transparent}) => {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('xs'));
+  const classes = useStyles({transparent});
+  const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (isOpen) => (event) => {
+  const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
-    setDrawer({ top: isOpen });
+    setOpen(open);
   };
 
-  const drawerList = () => (
-    <div
-      className={classes.drawerList}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Nicholai Hansen', 'About', 'Projects'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
+  const drawerList = (
+    <List>
+      {[
+        { text: 'Nicholai Hansen', scroll: 'head' },
+        { text: 'About', scroll: 'about' },
+        { text: 'Projects', scroll: 'projects' },
+      ].map((item) => (
+        <ListItem button key={item.text}>
+          <Link to={item.scroll} smooth onClick={toggleDrawer(false)}>
+            <ListItemText primary={item.text} />
+          </Link>
+        </ListItem>
+      ))}
+    </List>
   );
 
   return (
-    <AppBar position="fixed" className={classes.root}>
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          onClick={toggleDrawer(true)}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
-        <Drawer anchor="top" open={drawer.top} onClose={toggleDrawer(false)}>
-          {drawerList}
-        </Drawer>
-        <Typography className={classes.title}>
-          <Link to="head" smooth>
+    <>
+      <AppBar position="fixed" className={classes.root}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            onClick={toggleDrawer(true)}
+            color="inherit"
+            aria-label="menu"
+            className={clsx(classes.menuButton, open && classes.hide, !isMobile && classes.hide)}
+          >
+            <MenuIcon className={classes.menuIcon} />
+          </IconButton>
+
+          <Typography
+            component={Link}
+            to="head"
+            smooth
+            className={clsx(classes.title, isMobile && classes.hide)}
+          >
             Nicholai Hansen
-          </Link>
-        </Typography>
-        <Typography className={classes.navButton}>
-          <Link to="about" smooth>
+          </Typography>
+          <Typography
+            component={Link}
+            to="about"
+            smooth
+            className={clsx(classes.navButton, isMobile && classes.hide)}
+          >
             About
-          </Link>
-        </Typography>
-        <Typography className={classes.navButton}>
-          <Link to="projects" className={classes.navButton} smooth>
+          </Typography>
+          <Typography
+            component={Link}
+            to="projects"
+            smooth
+            className={clsx(classes.navButton, isMobile && classes.hide)}
+          >
             Projects
-          </Link>
-        </Typography>
-      </Toolbar>
-    </AppBar>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        anchor="left"
+        open={open}
+        onClose={toggleDrawer(false)}
+        className={clsx(classes.drawer)}
+      >
+        {drawerList}
+      </Drawer>
+    </>
   );
 };
 

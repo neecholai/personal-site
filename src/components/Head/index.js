@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Head = () => {
+const Head = ({headRef}) => {
 	const classes = useStyles();
 	const typeRef = useRef();
 
@@ -55,7 +55,7 @@ const Head = () => {
 	useTyped(typeRef, options);
 
 	return (
-		<div id="head" className={classes.root}>
+		<div id="head" ref={headRef} className={classes.root}>
 			<Typography variant="h1" className={classes.title}>
 				Nicholai Hansen
 			</Typography>

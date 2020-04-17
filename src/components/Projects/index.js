@@ -40,12 +40,12 @@ const Projects = () => {
         ></Project>
         <Project
           title="Warbler"
-          description="Twitter clone. Warbler allows users share bite-sized thoughts and follow others. to follow each other, and post and like 'warbles.' Users can post and like other user's 'warbles'. Users can find other users Built in Javascript, Flask, and SQL."
+          description="Twitter clone. Warbler allows users to post bite-sized thoughts and find and follow other users. Users can post, share, and like other contributers' 'warbles'. Built in Javascript, Flask, and SQL."
           image={warblerPhoto}
         ></Project>
         <Project
           title="Jobly"
-          description="Indeed clone to connect companies with candidates. Companies can post job openings and candidates can login and apply. Built in React, Express.js, PostgreSQL, and React-Bootstrap."
+          description="Indeed clone. Jobly connects companies with candidates. Companies can create company profiles and post job openings for potential candidates. Job seekers can create profiles to apply for new positions. Built in React, Express.js, PostgreSQL, and React-Bootstrap."
           image={joblyPhoto}
           isImgFirst
         ></Project>
