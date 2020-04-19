@@ -42,8 +42,6 @@ const Project = ({ title, description, image, isImgFirst, link }) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const classes = useStyles();
 
-  console.log({ link });
-
   const imgJSX = (
     <Grid item sm={12} md={6} className={classes.image}>
       <img src={image} alt="project" style={{ width: '100%', height: '100%' }} />
