@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     alignItems: 'flex-start',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   body: {},
 }));
@@ -38,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
 const Project = ({ title, description, image, isImgFirst, link }) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const classes = useStyles();
+
+  console.log({ link });
 
   const imgJSX = (
     <Grid item sm={12} md={6} className={classes.image}>
@@ -47,7 +52,14 @@ const Project = ({ title, description, image, isImgFirst, link }) => {
 
   const textJSX = (
     <Grid item sm={12} md={6} className={classes.text}>
-      <Typography component={Link} to={link} variant="h5" className={classes.title}>
+      <Typography
+        component={Link}
+        rel="noopener noreferrer"
+        target="_blank"
+        href={link}
+        variant="h5"
+        className={classes.title}
+      >
         <b>{title}</b>
       </Typography>
       <Typography variant="body1" className={classes.body}>

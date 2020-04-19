@@ -136,7 +136,7 @@ const Head = ({ headRef }) => {
             icon: faInstagram,
           },
         ].map((social) => (
-          <Avatar className={clsx(classes.avatar, [social.class])}>
+          <Avatar key={social.link} className={clsx(classes.avatar, [social.class])}>
             <a
               href={`${social.link}`}
               rel="noopener noreferrer"
