@@ -38,17 +38,20 @@ const Projects = () => {
           description="Twitch-like live-streaming app for professionals. Livestack empowers creators like yoga teachers to remotely monetize their skills with online live-streaming events and classes. Built in React, Express.js, PostgreSQL, and dozens of other libraries and tools."
           image={livestackPhoto}
           isImgFirst
+          link="https://livestack.video/"
         ></Project>
         <Project
           title="Warbler"
           description="Twitter clone. Warbler allows users to post bite-sized thoughts and find and follow other users. Users can post, share, and like other contributers' 'warbles'. Built in Javascript, Flask, and SQL."
           image={warblerPhoto}
+          link="https://warbler-nicholai.herokuapp.com/"
         ></Project>
         <Project
           title="Jobly"
           description="Indeed clone. Jobly connects companies with candidates. Companies can create company profiles and post job openings for potential candidates. Job seekers can create profiles to apply for new positions. Built in React, Express.js, PostgreSQL, and React-Bootstrap."
           image={joblyPhoto}
           isImgFirst
+          link="https://jobly-nicholai.herokuapp.com/"
         ></Project>
       </Grid>
     </div>

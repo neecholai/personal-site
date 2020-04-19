@@ -3,6 +3,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
     // justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
     backgroundColor: theme.palette.secondary.main,
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   body: {},
 }));
 
-const Project = ({ title, description, image, isImgFirst }) => {
+const Project = ({ title, description, image, isImgFirst, link }) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const classes = useStyles();
 
@@ -46,7 +47,7 @@ const Project = ({ title, description, image, isImgFirst }) => {
 
   const textJSX = (
     <Grid item sm={12} md={6} className={classes.text}>
-      <Typography variant="h5" className={classes.title}>
+      <Typography component={Link} to={link} variant="h5" className={classes.title}>
         <b>{title}</b>
       </Typography>
       <Typography variant="body1" className={classes.body}>
